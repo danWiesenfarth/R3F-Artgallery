@@ -4,6 +4,8 @@ import { KeyboardControls } from '@react-three/drei';
 import { Environment } from '@react-three/drei';
 import { ContactShadows } from '@react-three/drei';
 
+import CoordinatePicker from './CoordinatePicker';
+
 import GalleryScene from './GalleryScene';
 
 import PostProcessing from './PostProcessing';
@@ -50,11 +52,12 @@ export default function Gallery() {
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
             background
-            backgroundBlurriness={0.7}
+            backgroundBlurriness={0.6}
           />
 
           <GalleryScene />
-          <PostProcessing />
+          {/* <CoordinatePicker />*/}
+          {/* <PostProcessing />*/}
           {/* <DebugGrid />*/}
         </Canvas>
       </div>

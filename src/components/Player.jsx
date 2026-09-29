@@ -10,7 +10,7 @@ const Player = forwardRef(function Player({ controlsRef, focused }, ref) {
 
   const [, getKeys] = useKeyboardControls();
 
-  const speed = 8;
+  const speed = 5;
 
   useFrame((state, delta) => {
     if (!player.current) return;
@@ -119,7 +119,7 @@ const Player = forwardRef(function Player({ controlsRef, focused }, ref) {
   });
 
   return (
-    <mesh ref={player} position={[0, 0.875, -8]} castShadow>
+    <mesh ref={player} position={[-12, 0.875, -12]} castShadow>
       <boxGeometry args={[0, 1.75, 0]} />
 
       <meshStandardMaterial color='#222222' />

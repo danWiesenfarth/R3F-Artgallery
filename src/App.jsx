@@ -5,8 +5,8 @@ import UIOverlay from './components/UIOverlay';
 function App() {
   return (
     <>
-      <Header />
-      <UIOverlay />
+      {/* <Header />
+      <UIOverlay />*/}
       <Gallery />;
     </>
   );
