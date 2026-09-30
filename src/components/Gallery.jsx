@@ -2,7 +2,6 @@ import { useCallback, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { KeyboardControls, Environment } from '@react-three/drei';
 
-import CoordinatePicker from './CoordinatePicker';
 import GalleryScene from './GalleryScene';
 import MobileControls from './MobileControls';
 import LoadingScreen from './LoadingScreen';
@@ -53,9 +52,14 @@ export default function Gallery() {
     <KeyboardControls map={controls}>
       <div className='gallery'>
         <Canvas
-          shadows
+          shadows={!window.matchMedia('(pointer: coarse)').matches}
+          dpr={
+            window.matchMedia('(pointer: coarse)').matches ? [1, 1.5] : [1, 2]
+          }
           gl={{
             alpha: true,
+            antialias: false,
+            powerPreference: 'high-performance',
           }}
           style={{
             background: 'transparent',
@@ -64,8 +68,6 @@ export default function Gallery() {
           <Environment
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
-            background
-            backgroundBlurriness={0.7}
           />
 
           <GalleryScene
