@@ -12,12 +12,7 @@ import {
 
 export default function PostProcessing() {
   return (
-    <EffectComposer enableNormalPass multisampling={4}>
-      <SMAA />
-
-      <Pixelation
-        granularity={1} // pixel granularity
-      />
+    <EffectComposer enableNormalPass>
       <ToneMapping
         adaptive={true} // toggle adaptive luminance map usage
         resolution={256} // texture resolution of the luminance map
@@ -28,12 +23,12 @@ export default function PostProcessing() {
       />
 
       <Bloom
-        intensity={0.25}
+        intensity={0.55}
         luminanceThreshold={0.6}
         luminanceSmoothing={0.7}
         mipmapBlur
       />
-      <Noise opacity={0.1} />
+      {/* <Noise opacity={0.1} />*/}
       <Vignette eskil={false} offset={0.1} darkness={0.5} />
     </EffectComposer>
   );

@@ -7,12 +7,6 @@ export default function Floor8x8({ x = 0, y = 0, z = 0 }) {
     if (child.isMesh) {
       child.castShadow = true;
       child.receiveShadow = true;
-      console.log(child.name);
-      console.log(child.material);
-      console.log('roughness:', child.material.roughness);
-      console.log('roughnessMap:', child.material.roughnessMap);
-      console.log('metalness:', child.material.metalness);
-      console.log('metalnessMap:', child.material.metalnessMap);
     }
   });
 

@@ -9,7 +9,7 @@ export default function FramePortraitLarge({
   rz = 0,
 }) {
   const { scene, nodes } = useGLTF('/models/FramePortraitLarge.glb');
-  console.log(nodes);
+
   scene.traverse((child) => {
     if (child.isMesh) {
       child.castShadow = true;

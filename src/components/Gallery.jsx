@@ -1,15 +1,11 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { KeyboardControls } from '@react-three/drei';
-import { Environment } from '@react-three/drei';
-import { ContactShadows } from '@react-three/drei';
+import { KeyboardControls, Environment } from '@react-three/drei';
 
 import CoordinatePicker from './CoordinatePicker';
-
 import GalleryScene from './GalleryScene';
-
-import PostProcessing from './PostProcessing';
-import { FogExp2 } from 'three';
+import MobileControls from './MobileControls';
+import LoadingScreen from './LoadingScreen';
 
 export default function Gallery() {
   const controls = useMemo(
@@ -34,32 +30,53 @@ export default function Gallery() {
     [],
   );
 
+  const mobileMovement = useRef({
+    x: 0,
+    y: 0,
+  });
+
+  const mobileLook = useRef({
+    x: 0,
+    y: 0,
+  });
+
+  const handleMobileMove = useCallback((movement) => {
+    mobileMovement.current = movement;
+  }, []);
+
+  const handleMobileLook = useCallback((look) => {
+    mobileLook.current.x += look.x;
+    mobileLook.current.y += look.y;
+  }, []);
+
   return (
     <KeyboardControls map={controls}>
       <div className='gallery'>
         <Canvas
           shadows
-          gl={{ alpha: true }}
-          style={{ background: 'transparent' }}
+          gl={{
+            alpha: true,
+          }}
+          style={{
+            background: 'transparent',
+          }}
         >
-          {/* <ContactShadows
-            position={[0, 4, 0]}
-            scale={10}
-            blur={2}
-            opacity={0.5}
-          />*/}
           <Environment
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
             background
-            backgroundBlurriness={0.6}
+            backgroundBlurriness={0.7}
           />
 
-          <GalleryScene />
-          {/* <CoordinatePicker />*/}
-          {/* <PostProcessing />*/}
-          {/* <DebugGrid />*/}
+          <GalleryScene
+            mobileMovement={mobileMovement}
+            mobileLook={mobileLook}
+          />
         </Canvas>
+
+        <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />
+
+        <LoadingScreen />
       </div>
     </KeyboardControls>
   );

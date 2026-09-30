@@ -1,9 +1,16 @@
+'use no memo';
+
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useKeyboardControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Player = forwardRef(function Player({ controlsRef, focused }, ref) {
+import { checkCollision } from '../utility/collision';
+
+const Player = forwardRef(function Player(
+  { focused, obstacles = [], mobileMovement },
+  ref,
+) {
   const player = useRef();
 
   useImperativeHandle(ref, () => player.current);
@@ -11,120 +18,71 @@ const Player = forwardRef(function Player({ controlsRef, focused }, ref) {
   const [, getKeys] = useKeyboardControls();
 
   const speed = 5;
+  const radius = 0.4;
 
   useFrame((state, delta) => {
-    if (!player.current) return;
+    if (!player.current || focused) return;
 
     const { forward, backward, left, right } = getKeys();
 
+    let inputX = right - left;
+    let inputY = forward - backward;
+
+    // Mobile joystick
+    if (mobileMovement.current.x !== 0 || mobileMovement.current.y !== 0) {
+      inputX = mobileMovement.current.x;
+      inputY = -mobileMovement.current.y;
+    }
+
     const movement = new THREE.Vector3();
 
-    if (focused) {
-      /*
-       * When focused, movement uses the player's
-       * own rotation instead of the camera.
-       */
+    // Camera forward
+    const forwardDirection = new THREE.Vector3(0, 0, -1).applyQuaternion(
+      state.camera.quaternion,
+    );
 
-      const forwardDirection = new THREE.Vector3(0, 0, -1).applyQuaternion(
-        player.current.quaternion,
-      );
+    forwardDirection.y = 0;
+    forwardDirection.normalize();
 
-      const rightDirection = new THREE.Vector3(1, 0, 0).applyQuaternion(
-        player.current.quaternion,
-      );
+    // Camera right
+    const rightDirection = new THREE.Vector3(1, 0, 0).applyQuaternion(
+      state.camera.quaternion,
+    );
 
-      if (forward) {
-        movement.add(forwardDirection);
-      }
+    rightDirection.y = 0;
+    rightDirection.normalize();
 
-      if (backward) {
-        movement.sub(forwardDirection);
-      }
-
-      if (right) {
-        movement.add(rightDirection);
-      }
-
-      if (left) {
-        movement.sub(rightDirection);
-      }
-    } else {
-      /*
-       * Normal third-person movement.
-       * Movement follows the camera direction.
-       */
-
-      const direction = new THREE.Vector3();
-
-      direction
-        .subVectors(state.camera.position, player.current.position)
-        .normalize();
-
-      direction.y = 0;
-      direction.normalize();
-
-      const forwardDirection = direction.clone().negate();
-
-      const rightDirection = new THREE.Vector3()
-        .crossVectors(forwardDirection, new THREE.Vector3(0, 1, 0))
-        .normalize();
-
-      if (forward) {
-        movement.add(forwardDirection);
-      }
-
-      if (backward) {
-        movement.sub(forwardDirection);
-      }
-
-      if (right) {
-        movement.add(rightDirection);
-      }
-
-      if (left) {
-        movement.sub(rightDirection);
-      }
+    if (inputY !== 0) {
+      movement.add(forwardDirection.clone().multiplyScalar(inputY));
     }
 
-    if (movement.length() > 0) {
-      movement.normalize();
-      movement.multiplyScalar(speed * delta);
-
-      player.current.position.add(movement);
-
-      /*
-       * Rotate the player toward movement direction.
-       */
-      const angle = Math.atan2(movement.x, movement.z);
-
-      player.current.rotation.y = THREE.MathUtils.lerp(
-        player.current.rotation.y,
-        angle,
-        0.15,
-      );
+    if (inputX !== 0) {
+      movement.add(rightDirection.clone().multiplyScalar(inputX));
     }
 
-    /*
-     * Keep OrbitControls focused on the player.
-     */
-    if (!focused && controlsRef.current) {
-      const target = player.current.position.clone();
+    if (movement.length() === 0) return;
 
-      target.y += 1;
+    movement.normalize();
+    movement.multiplyScalar(speed * delta);
 
-      controlsRef.current.target.lerp(target, 0.1);
+    // X collision
+    const nextPosition = player.current.position.clone();
 
-      controlsRef.current.update();
+    nextPosition.x += movement.x;
+
+    if (!checkCollision(nextPosition, radius, obstacles)) {
+      player.current.position.x = nextPosition.x;
+    }
+
+    // Z collision
+    nextPosition.z = player.current.position.z + movement.z;
+
+    if (!checkCollision(nextPosition, radius, obstacles)) {
+      player.current.position.z = nextPosition.z;
     }
   });
 
-  return (
-    <mesh ref={player} position={[-12, 0.875, -12]} castShadow>
-      <boxGeometry args={[0, 1.75, 0]} />
-
-      <meshStandardMaterial color='#222222' />
-    </mesh>
-  );
+  return <group ref={player} position={[-12, 0.875, -12]} />;
 });
 
 export default Player;
