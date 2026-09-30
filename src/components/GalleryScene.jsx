@@ -19,6 +19,10 @@ import FirstPersonCamera from './FirstPersonCamera';
 import { galleryColliders } from '../utility/galleryColliders';
 import CollisionDebug from './CollisionDebug';
 
+const isMobile =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(pointer: coarse)').matches;
+
 export default function GalleryScene({ mobileMovement, mobileLook }) {
   const playerRef = useRef();
   const controlsRef = useRef();
@@ -32,7 +36,7 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
       <directionalLight
         position={[2, 8, 8]}
         intensity={1.5}
-        castShadow
+        castShadow={!isMobile}
 
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -76,7 +80,7 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
       <Wall8x8TrimLarge x={8} z={-8} ry={deg180} />
       <ArchedWindow y={4} x={4} />
       <ArchedWindow y={4} x={-4} />
-      <ArtworkPortraitLarge
+      {/* <ArtworkPortraitLarge
         src={'antarctica/dw_penguin_2.jpg'}
         position={[-8, 3.2, 6]}
         rotation={[0, 0, 0]}
@@ -254,7 +258,7 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
         position={[-8, 3.2, -24.8]}
         rotation={[0, 0, 0]}
         scale={1.2}
-      />
+      />*/}
       {/* <ArtworkPortraitLarge
         src={'dw_epic_penguin_6.jpg'}
         position={[-8, 2.5, 0]}

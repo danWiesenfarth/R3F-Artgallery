@@ -71,11 +71,11 @@ export default function Gallery() {
             environmentIntensity={0.2}
           />*/}
 
-          {/* <GalleryScene
+          <GalleryScene
             mobileMovement={mobileMovement}
             mobileLook={mobileLook}
-          />*/}
-          <TestScene mobileMovement={mobileMovement} mobileLook={mobileLook} />
+          />
+          {/* <TestScene mobileMovement={mobileMovement} mobileLook={mobileLook} />*/}
         </Canvas>
 
         <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />
