@@ -65,10 +65,10 @@ export default function Gallery() {
             background: 'transparent',
           }}
         >
-          <Environment
+          {/* <Environment
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
-          />
+          />*/}
 
           <GalleryScene
             mobileMovement={mobileMovement}
