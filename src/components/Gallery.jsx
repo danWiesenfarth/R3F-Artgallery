@@ -5,6 +5,7 @@ import { KeyboardControls, Environment } from '@react-three/drei';
 import GalleryScene from './GalleryScene';
 import MobileControls from './MobileControls';
 import LoadingScreen from './LoadingScreen';
+import TestScene from './TestScene';
 
 export default function Gallery() {
   const controls = useMemo(
@@ -70,10 +71,11 @@ export default function Gallery() {
             environmentIntensity={0.2}
           />*/}
 
-          <GalleryScene
+          {/* <GalleryScene
             mobileMovement={mobileMovement}
             mobileLook={mobileLook}
-          />
+          />*/}
+          <TestScene mobileMovement={mobileMovement} mobileLook={mobileLook} />
         </Canvas>
 
         <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />
