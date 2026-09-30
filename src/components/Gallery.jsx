@@ -5,7 +5,6 @@ import { KeyboardControls, Environment } from '@react-three/drei';
 import GalleryScene from './GalleryScene';
 import MobileControls from './MobileControls';
 import LoadingScreen from './LoadingScreen';
-import TestScene from './TestScene';
 
 export default function Gallery() {
   const controls = useMemo(
@@ -66,16 +65,15 @@ export default function Gallery() {
             background: 'transparent',
           }}
         >
-          {/* <Environment
+          <Environment
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
-          />*/}
+          />
 
           <GalleryScene
             mobileMovement={mobileMovement}
             mobileLook={mobileLook}
           />
-          {/* <TestScene mobileMovement={mobileMovement} mobileLook={mobileLook} />*/}
         </Canvas>
 
         <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />
