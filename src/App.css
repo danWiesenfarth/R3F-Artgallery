@@ -10,6 +10,10 @@
   background: #e8e5df;
 }
 
+.departure {
+  font-family: 'Departure Mono', monospace;
+}
+
 .loading-title {
   margin-bottom: 14px;
   width: 500px;

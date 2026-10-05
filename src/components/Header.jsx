@@ -5,7 +5,13 @@ import GalleryAudio from './Gallery/GalleryAudio';
 
 export default function Header({ showUI }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const burgerClass = `
+    relative z-[101]
+    flex h-12 w-12 items-center justify-center
+    rounded-full md:hidden
+    transition-colors duration-300
+    ${menuOpen ? 'bg-blue-500 text-blue-50' : 'bg-blue-50 text-blue-500'}
+  `;
   function handleMouseEnter(event) {
     animate(event.currentTarget, {
       innerHTML: scrambleText({
@@ -119,25 +125,25 @@ export default function Header({ showUI }) {
         <button
           type='button'
           onClick={() => setMenuOpen((prev) => !prev)}
-          className='relative z-[101] flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 md:hidden'
+          className={burgerClass}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
         >
           <span className='relative block h-4 w-5'>
             <span
-              className={`absolute left-0 top-0 h-[2px] w-5 bg-white transition-transform duration-300 ${
+              className={`absolute left-0 top-0 h-[2px] w-5 bg-current transition-transform duration-300 ${
                 menuOpen ? 'translate-y-[7px] rotate-45' : ''
               }`}
             />
 
             <span
-              className={`absolute left-0 top-[7px] h-[2px] w-5 bg-white transition-opacity duration-300 ${
+              className={`absolute left-0 top-[7px] h-[2px] w-5 bg-current transition-opacity duration-300 ${
                 menuOpen ? 'opacity-0' : ''
               }`}
             />
 
             <span
-              className={`absolute left-0 top-[14px] h-[2px] w-5 bg-white transition-transform duration-300 ${
+              className={`absolute left-0 top-[14px] h-[2px] w-5 bg-current transition-transform duration-300 ${
                 menuOpen ? '-translate-y-[7px] -rotate-45' : ''
               }`}
             />
@@ -147,7 +153,7 @@ export default function Header({ showUI }) {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-16 right-4 left-4 overflow-hidden rounded-3xl bg-blue-500 transition-all duration-300 md:hidden ${
+        className={`absolute top-16 right-4 left-4 overflow-hidden rounded-xl bg-blue-50 transition-all duration-300 md:hidden ${
           menuOpen
             ? 'pointer-events-auto max-h-[500px] opacity-100'
             : 'pointer-events-none max-h-0 opacity-0'
@@ -157,25 +163,28 @@ export default function Header({ showUI }) {
           <Link
             to='/'
             onClick={closeMenu}
-            className='block rounded-2xl px-5 py-4 text-xl text-white'
+            className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
-            Explore
+            <span className='font-departure text-xl opacity-75'>1</span>
+            <span className=' '>Explore</span>
           </Link>
 
           <Link
             to='/work'
             onClick={closeMenu}
-            className='block rounded-2xl px-5 py-4 text-xl text-white'
+            className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
-            Works
+            <span className='font-departure text-xl opacity-75'>2</span>
+            <span className=' '>Work</span>
           </Link>
 
           <Link
             to='/about'
             onClick={closeMenu}
-            className='block rounded-2xl px-5 py-4 text-xl text-white'
+            className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
-            About
+            <span className='font-departure text-xl opacity-75'>3</span>
+            <span className=' '>About</span>
           </Link>
 
           {/* Audio / vinyl */}

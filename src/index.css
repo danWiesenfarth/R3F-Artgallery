@@ -8,6 +8,10 @@
   font-display: swap;
 }
 
+@theme {
+  --font-departure: 'Departure Mono', monospace;
+}
+
 * {
   box-sizing: border-box;
 }
