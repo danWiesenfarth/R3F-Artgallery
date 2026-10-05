@@ -54,7 +54,7 @@ export default function Gallery() {
       <div className='gallery'>
         <Canvas
           shadows
-          dpr
+          dprs
           gl={{
             alpha: true,
             antialias: false,
@@ -68,7 +68,7 @@ export default function Gallery() {
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
           />
-          <Stats />
+          {/* <Stats />*/}
 
           <GalleryScene
             mobileMovement={mobileMovement}
