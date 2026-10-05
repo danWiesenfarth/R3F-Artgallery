@@ -29,7 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <CustomCursor />
-      <Header />
+      <Header showUI={showUI} />
 
       <Routes>
         <Route
@@ -38,7 +38,6 @@ function App() {
             <>
               <Gallery />
               {showUI && <UIOverlay />}
-              <GalleryAudio visible={showUI} />
             </>
           }
         />

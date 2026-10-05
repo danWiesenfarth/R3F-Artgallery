@@ -3,7 +3,7 @@ import { animate, scrambleText } from 'animejs';
 import { Link } from 'react-router-dom';
 import GalleryAudio from './Gallery/GalleryAudio';
 
-export default function Header() {
+export default function Header({ showUI }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   function handleMouseEnter(event) {
@@ -153,7 +153,7 @@ export default function Header() {
             : 'pointer-events-none max-h-0 opacity-0'
         }`}
       >
-        <nav className='p-3'>
+        <nav className='p-3 flex flex-col items-end text-right'>
           <Link
             to='/'
             onClick={closeMenu}
@@ -179,11 +179,9 @@ export default function Header() {
           </Link>
 
           {/* Audio / vinyl */}
-          <div className='mt-4 flex justify-center pb-4'>
-            <GalleryAudio visible />
-          </div>
         </nav>
       </div>
+      <GalleryAudio visible={showUI} mobileVisible={menuOpen} />
     </header>
   );
 }
