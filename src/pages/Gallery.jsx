@@ -53,10 +53,8 @@ export default function Gallery() {
     <KeyboardControls map={controls}>
       <div className='gallery'>
         <Canvas
-          shadows={!window.matchMedia('(pointer: coarse)').matches}
-          dpr={
-            window.matchMedia('(pointer: coarse)').matches ? [1, 1.5] : [1, 2]
-          }
+          shadows
+          dpr
           gl={{
             alpha: true,
             antialias: false,
@@ -70,12 +68,13 @@ export default function Gallery() {
             files='/white_chapel_1k.exr'
             environmentIntensity={0.2}
           />
+          <Stats />
 
           <GalleryScene
             mobileMovement={mobileMovement}
             mobileLook={mobileLook}
           />
-          {/* <PostProcessingEffects />*/}
+          <PostProcessingEffects />
         </Canvas>
 
         <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />

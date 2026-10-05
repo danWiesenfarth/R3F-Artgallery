@@ -1,6 +1,6 @@
 export default function UIOverlay() {
   return (
-    <div className='absolute bottom-5 left-4 z-50'>
+    <div className='absolute bottom-5 left-4 z-50 opacity-75'>
       <div className='  justify-center gap-8 ml-10 mt-24 items center font-bold text-xl text-blue-500 hidden lg:flex flex-col'>
         <div className='flex gap-4 items-center'>
           <svg

@@ -84,6 +84,11 @@
   border-radius: 50%;
 
   background: rgba(255, 255, 255, 0.5);
+  transition: all 200ms;
+}
+.mobile-joystick-knob:active {
+  height: 80px;
+  width: 80px;
 }
 
 @media (pointer: coarse) {

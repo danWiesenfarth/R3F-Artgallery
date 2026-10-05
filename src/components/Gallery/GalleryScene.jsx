@@ -38,11 +38,10 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
       <ambientLight intensity={0.2} />
       <directionalLight
         position={[2, 8, 8]}
-        intensity={1.5}
-        castShadow={!isMobile}
+        intensity={2.5}
+        castShadow
 
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
+        shadow-mapSize={[1024, 1024]}
 
         shadow-bias={-0.0005}
         shadow-normalBias={0.02}

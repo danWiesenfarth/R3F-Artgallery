@@ -3,11 +3,14 @@ import {
   Bloom,
   ToneMapping,
   Vignette,
+  SMAA,
 } from '@react-three/postprocessing';
+import { Fog } from 'three';
 
 export default function PostProcessingEffects() {
   return (
     <EffectComposer enableNormalPass>
+      <SMAA />
       <ToneMapping
         adaptive
         resolution={256}
@@ -15,6 +18,7 @@ export default function PostProcessingEffects() {
         maxLuminance={64}
         averageLuminance={5}
         adaptationRate={1}
+        s
       />
 
       <Bloom
