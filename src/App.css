@@ -92,3 +92,19 @@
     display: block;
   }
 }
+
+.vinyl-rotating {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vinyl-spin 2s linear infinite;
+}
+
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -2,10 +2,11 @@ import { useCallback, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { KeyboardControls, Environment } from '@react-three/drei';
 
-import GalleryScene from './GalleryScene';
-import MobileControls from './MobileControls';
-import LoadingScreen from './LoadingScreen';
-
+import GalleryScene from '../components/Gallery/GalleryScene';
+import MobileControls from '../components/Gallery/MobileControls';
+import LoadingScreen from '../components/LoadingScreen';
+import PostProcessingEffects from '../components/Gallery/PostProcessingEffects';
+import { Stats } from '@react-three/drei';
 export default function Gallery() {
   const controls = useMemo(
     () => [
@@ -74,10 +75,10 @@ export default function Gallery() {
             mobileMovement={mobileMovement}
             mobileLook={mobileLook}
           />
+          {/* <PostProcessingEffects />*/}
         </Canvas>
 
         <MobileControls onMove={handleMobileMove} onLook={handleMobileLook} />
-
         <LoadingScreen />
       </div>
     </KeyboardControls>

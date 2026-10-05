@@ -1,0 +1,53 @@
+export default function CursorIcon() {
+  return (
+    <svg
+      width='48'
+      height='48'
+      viewBox='0 0 48 48'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect
+        x='24'
+        y='20.4142'
+        width='5.07115'
+        height='5.07115'
+        transform='rotate(45 24 20.4142)'
+        stroke='currentColor'
+        strokeWidth='2'
+      />
+      <line
+        x1='24'
+        y1='17'
+        x2='24'
+        y2='9'
+        stroke='currentColor'
+        strokeWidth='2'
+      />
+      <line
+        x1='31'
+        y1='24'
+        x2='39'
+        y2='24'
+        stroke='currentColor'
+        strokeWidth='2'
+      />
+      <line
+        x1='9'
+        y1='24'
+        x2='17'
+        y2='24'
+        stroke='currentColor'
+        strokeWidth='2'
+      />
+      <line
+        x1='24'
+        y1='39'
+        x2='24'
+        y2='31'
+        stroke='currentColor'
+        strokeWidth='2'
+      />
+    </svg>
+  );
+}

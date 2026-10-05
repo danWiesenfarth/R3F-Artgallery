@@ -5,7 +5,8 @@ import { useFrame } from '@react-three/fiber';
 import { useKeyboardControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-import { checkCollision } from '../utility/collision';
+import { checkCollision } from '../../utility/collision';
+import { deg90 } from '../../utility/angles';
 
 const Player = forwardRef(function Player(
   { focused, obstacles = [], mobileMovement },
@@ -17,7 +18,7 @@ const Player = forwardRef(function Player(
 
   const [, getKeys] = useKeyboardControls();
 
-  const speed = 5;
+  const speed = 4;
   const radius = 0.4;
 
   useFrame((state, delta) => {
@@ -82,7 +83,13 @@ const Player = forwardRef(function Player(
     }
   });
 
-  return <group ref={player} position={[-12, 0.875, -12]} />;
+  return (
+    <group
+      ref={player}
+      position={[-12, 0.875, -12]}
+      rotation={[0, -deg90, 0]}
+    />
+  );
 });
 
 export default Player;

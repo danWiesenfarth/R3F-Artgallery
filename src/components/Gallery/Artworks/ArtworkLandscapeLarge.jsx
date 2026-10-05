@@ -1,4 +1,4 @@
-import { deg90 } from '../../utility/angles';
+import { deg90 } from '../../../utility/angles';
 import FramePortraitLarge from './ArtworkUtils/FramePortraitLarge';
 import ImageLandscapeLarge from './ArtworkUtils/ImageLandscapeWide';
 

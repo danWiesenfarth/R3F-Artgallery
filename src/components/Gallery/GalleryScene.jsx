@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 
-import { deg180, deg90 } from '../utility/angles';
+import { deg180, deg90 } from '../../utility/angles';
 
 import Player from './Player';
 import CameraController from './CameraController';
@@ -16,7 +16,7 @@ import Bench from './Modular/Bench';
 import Ceiling from './Ceiling';
 import FirstPersonCamera from './FirstPersonCamera';
 
-import { galleryColliders } from '../utility/galleryColliders';
+import { galleryColliders } from '../../utility/galleryColliders';
 import CollisionDebug from './CollisionDebug';
 
 const isMobile =
@@ -81,8 +81,7 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
       {/* LEFT*/}
       <Wall8x8TrimLarge x={8} z={0} ry={deg180} />
       <Wall8x8TrimLarge x={8} z={-8} ry={deg180} />
-      <ArchedWindow y={4} x={4} />
-      <ArchedWindow y={4} x={-4} />
+
       <ArtworkPortraitLarge
         src={photo('antarctica/dw_penguin_2.jpg')}
         position={[-8, 3.2, 6]}
@@ -296,9 +295,11 @@ export default function GalleryScene({ mobileMovement, mobileLook }) {
       <Floor8x8 x={-0} y={0} z={-16} />
       <Floor8x8 x={-0} y={0} z={-24} />
       <Floor8x8 x={-8} y={0} z={-24} />
-      <ArchedWindow y={4} x={4} z={-40} />
-      <ArchedWindow y={4} x={-4} z={-40} />
-      <ArchedWindow y={4} x={-4} />
+      <ArchedWindow y={0} x={7.4} z={-32} />
+      <ArchedWindow y={0} x={-0.62} z={-32} />
+
+      <ArchedWindow y={0} x={7.4} z={7.8} />
+      <ArchedWindow y={0} x={-0.62} z={7.8} />
       <PillarWide ry={deg90} z={-18} />
       <PillarWide ry={deg90} z={-26} />
       <Floor8x8 x={-8} y={0} z={-8} />

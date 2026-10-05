@@ -150,7 +150,7 @@ export default function MobileControls({ onMove, onLook }) {
 
   return (
     <>
-      <div ref={lookRef} className='mobile-look' />
+      <div ref={lookRef} className='mobile-look lg:hidden' />
 
       <div ref={joystickRef} className='mobile-joystick'>
         <div className='mobile-joystick-knob' />
