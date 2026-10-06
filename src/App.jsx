@@ -41,8 +41,6 @@ function App() {
             </>
           }
         />
-
-        <Route path='/work' element={<Work />} />
       </Routes>
     </BrowserRouter>
   );

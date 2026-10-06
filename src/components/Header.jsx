@@ -101,7 +101,7 @@ export default function Header({ showUI }) {
 
             <li>
               <Link
-                to='/work'
+                to='/'
                 onMouseEnter={handleMouseEnter}
                 className='block w-[125px] rounded-4xl px-4 py-2 hover:bg-blue-500 hover:text-blue-50'
               >
@@ -111,7 +111,7 @@ export default function Header({ showUI }) {
 
             <li>
               <Link
-                to='/about'
+                to='/'
                 onMouseEnter={handleMouseEnter}
                 className='block w-[125px] rounded-4xl px-4 py-2 hover:bg-blue-500/50 hover:text-blue-50'
               >
@@ -170,7 +170,7 @@ export default function Header({ showUI }) {
           </Link>
 
           <Link
-            to='/work'
+            to='/'
             onClick={closeMenu}
             className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
@@ -179,7 +179,7 @@ export default function Header({ showUI }) {
           </Link>
 
           <Link
-            to='/about'
+            to='/'
             onClick={closeMenu}
             className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
