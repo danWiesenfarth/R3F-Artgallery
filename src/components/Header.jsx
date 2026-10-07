@@ -87,7 +87,7 @@ export default function Header({ showUI }) {
         </Link>
 
         {/* Desktop navigation */}
-        <nav className='hidden md:block'>
+        {/* <nav className='hidden md:block'>
           <ul className='flex items-center justify-center gap-4 text-center text-xl text-blue-500'>
             <li>
               <Link
@@ -119,7 +119,7 @@ export default function Header({ showUI }) {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav>*/}
 
         {/* Mobile burger */}
         <button
