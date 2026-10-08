@@ -87,7 +87,7 @@ export default function Header({ showUI }) {
         </Link>
 
         {/* Desktop navigation */}
-        {/* <nav className='hidden md:block'>
+        <nav className='hidden md:block'>
           <ul className='flex items-center justify-center gap-4 text-center text-xl text-blue-500'>
             <li>
               <Link
@@ -105,7 +105,7 @@ export default function Header({ showUI }) {
                 onMouseEnter={handleMouseEnter}
                 className='block w-[125px] rounded-4xl px-4 py-2 hover:bg-blue-500 hover:text-blue-50'
               >
-                Works
+                COMING SOON
               </Link>
             </li>
 
@@ -115,11 +115,11 @@ export default function Header({ showUI }) {
                 onMouseEnter={handleMouseEnter}
                 className='block w-[125px] rounded-4xl px-4 py-2 hover:bg-blue-500/50 hover:text-blue-50'
               >
-                About
+                COMING SOON
               </Link>
             </li>
           </ul>
-        </nav>*/}
+        </nav>
 
         {/* Mobile burger */}
         <button
@@ -175,7 +175,7 @@ export default function Header({ showUI }) {
             className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
             <span className='font-departure text-xl opacity-75'>2</span>
-            <span className=' '>Work</span>
+            <span className=' '>COMING SOON</span>
           </Link>
 
           <Link
@@ -184,7 +184,7 @@ export default function Header({ showUI }) {
             className=' rounded-2xl px-5 py-4 text-xl text-blue-500 flex justify-between w-full'
           >
             <span className='font-departure text-xl opacity-75'>3</span>
-            <span className=' '>About</span>
+            <span className=' '>COMING SOON</span>
           </Link>
 
           {/* Audio / vinyl */}
