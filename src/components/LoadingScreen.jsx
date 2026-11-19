@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useProgress } from '@react-three/drei';
+import LoadingImage from './LoadingImage';
 
 export default function LoadingScreen() {
   const { active, progress } = useProgress();
@@ -54,10 +55,23 @@ export default function LoadingScreen() {
   if (!started || entered) return null;
 
   return (
-    <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-[#e8e5df] px-6 text-blue-500'>
-      <div className='w-full max-w-[500px]'>
-        <div className='mb-[14px] font-["Departure_Mono"] text-[20px] tracking-[-0.015em] max-sm:text-[16px]'>
-          {ready ? 'READY' : 'LOADING...'}
+    <div className='fixed inset-0 z-[1000] flex flex-col items-center justify-around bg-[#e8e5df] px-6 text-blue-500'>
+      <div className='flex w-full flex-col items-center gap-4'>
+        <div className='w-full max-w-[1100px] mt-6'>
+          <LoadingImage />
+        </div>
+        <h1 className='md:mt-12 text-2xl md:text-6xl uppercase font-["Departure_Mono"]'>
+          COME IN. STEP CLOSER.
+        </h1>
+        <div className='mt-2 max-w-[60ch] md:text-xl text-center'>
+          Explore a collection of photographs in an immersive 3D space. Move
+          around, discover details and experience photography from a diffrent
+          perspective. Also, entry is free!
+        </div>
+      </div>
+      <div className='w-full max-w-[500px] flex flex-col'>
+        <div className='font-["Departure_Mono"] text-[20px] tracking-[-0.015em] max-sm:text-[16px]'>
+          {ready ? 'READY' : 'HANGING UP PHOTOGRAPHS...'}
         </div>
 
         <div className='h-[4px] w-full bg-blue-500/15'>
