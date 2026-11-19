@@ -7,25 +7,51 @@ export default function LoadingScreen() {
   const [displayProgress, setDisplayProgress] = useState(0);
   const [ready, setReady] = useState(false);
   const [entered, setEntered] = useState(false);
+  const [started, setStarted] = useState(false);
 
+  // Remember that loading has started
   useEffect(() => {
-    if (progress < 100) {
-      setDisplayProgress(progress);
-      return;
+    if (active || progress > 0) {
+      setStarted(true);
     }
+  }, [active, progress]);
 
-    // Keep the loading screen at 100% for a little longer
-    setDisplayProgress(100);
+  // Smoothly interpolate progress
+  useEffect(() => {
+    let animationFrame;
+
+    const animate = () => {
+      setDisplayProgress((current) => {
+        const difference = progress - current;
+
+        if (Math.abs(difference) < 0.1) {
+          return progress;
+        }
+
+        return current + difference * 0.08;
+      });
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [progress]);
+
+  // Wait until loading is complete
+  useEffect(() => {
+    if (!started || active || progress < 100) return;
 
     const timer = setTimeout(() => {
+      setDisplayProgress(100);
       setReady(true);
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [progress]);
+  }, [active, progress, started]);
 
-  if (!active && !ready) return null;
-  if (entered) return null;
+  if (!started || entered) return null;
 
   return (
     <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-[#e8e5df] px-6 text-blue-500'>
@@ -36,7 +62,7 @@ export default function LoadingScreen() {
 
         <div className='h-[4px] w-full bg-blue-500/15'>
           <div
-            className='h-full bg-blue-500 transition-[width] duration-200 ease-in-out'
+            className='h-full bg-blue-500 transition-[width] duration-100 ease-linear'
             style={{ width: `${displayProgress}%` }}
           />
         </div>
@@ -49,7 +75,7 @@ export default function LoadingScreen() {
           <button
             type='button'
             onClick={() => setEntered(true)}
-            className='px-6 py-3 rounded bg-blue-500  text-blue-50 font-bold hover:bg-blue-400 mx-auto mt-8'
+            className='mx-auto mt-4 rounded bg-blue-500 px-6 py-3 font-bold text-blue-50 hover:bg-blue-400'
           >
             Enter Gallery
           </button>
